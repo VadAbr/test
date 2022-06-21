@@ -1,0 +1,21 @@
+@import "src/variables";
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: $space-medium;
+    padding-block: $space-base;
+    margin-block-end: $space-medium;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}

@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
-import { Paths } from '../../constants/paths';
+import { Paths } from '../../constants';
 
 type PrivateRouteProps = {
   redirectTo: Paths;
