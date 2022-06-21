@@ -11,8 +11,10 @@ html, body, #root {
 }
 
 body {
-  font-size: $base-font-size;
-  color: #000;
+  font-size: $font-size-large;
+  font-weight: $font-weight-normal;
   font-family: sans-serif;
+  background-color: #fafbfe;
+  color: #1b1732;
 }
 

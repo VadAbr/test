@@ -1,0 +1,20 @@
+@import 'src/variables';
+
+.input {
+  display: block;
+  block-size: 35px;
+  min-inline-size: 250px;
+  border: 2px solid #dbdbdb;
+  border-radius: 5px;
+  box-shadow: none;
+  outline: none;
+  font-size: $font-size-large;
+  padding-inline: $space-small-base;
+  color: inherit;
+
+  transition: all 0.3s;
+
+  &:focus, &:active, &:hover {
+    border-color: #fdd07c;
+  }
+}

@@ -1,0 +1,27 @@
+@import "src/variables";
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .title {
+    font-size: $font-size-xlarge;
+    font-weight: $font-weight-normal;
+    margin-block-end: $space-large;
+  }
+
+  .text {
+    text-align: center;
+    max-inline-size: 300px;
+    font-size: $font-size-base;
+    margin-block-end: $space-medium;
+  }
+
+  & input {
+    margin-block-end: $space-large;
+    inline-size: 320px;
+  }
+}

@@ -1,0 +1,28 @@
+@import 'src/variables';
+
+.button {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 40px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  text-align: center;
+  background-color: #fdd07c;
+  font-size: $font-size-large;
+  padding-block: $space-base;
+  color: inherit;
+
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #fdc764;
+  }
+
+  &:focus, &:active {
+    border-color: #fdd07c;
+    background-color: #fdc764;
+  }
+}
