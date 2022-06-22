@@ -16,3 +16,10 @@ export enum DiagramSubTitles {
   inactive = 'Неактивных',
   completed = 'Завершенных',
 }
+
+export enum DiagramSliceColors {
+  all = '#111',
+  active = '#f9a752',
+  inactive = '#fccf82',
+  completed = '#cfcfd7',
+}

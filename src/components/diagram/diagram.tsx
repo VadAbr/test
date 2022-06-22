@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
-import { Statistic } from '../../types';
+import React, { FC, useState } from 'react';
+import { Statistic, DonutSlice, FormattedStatistic } from '../../types';
 import { DiagramTitles, DiagramSubTitles } from '../../constants';
+import DonatChart from '../donat-chart';
+
+import { prepareDataForDonatChart } from '../../utils';
 
 import styles from './diagram.module.scss';
 
@@ -10,23 +13,43 @@ export type DiagramProps = {
 };
 
 const Diagram: FC<DiagramProps> = ({ data, title }) => {
-  const keys = Object.keys(data) as Array<keyof Statistic>;
-  const total = keys.reduce((acc, key) => acc + data[key], 0);
+  const [currentSlice, setCurrentSlice] =
+    useState<DonutSlice<FormattedStatistic> | null>(null);
+  const formattedData = prepareDataForDonatChart(data);
+
+  const onHover = (key: keyof FormattedStatistic) => {
+    const slice = formattedData.find(({ id }) => id === key);
+    setCurrentSlice(slice || null);
+  };
+
+  const onUnHover = () => {
+    setCurrentSlice(null);
+  };
 
   return (
     <div className={styles.container}>
-      <div className={styles.diagram}>{title}</div>
+      <div className={styles.diagram}>
+        <DonatChart
+          data={formattedData}
+          label={title}
+          borderSize={5}
+          radius={50}
+          currentSlice={currentSlice}
+          onHover={onHover}
+          onUnHover={onUnHover}
+        />
+      </div>
 
       <ul className={styles.list}>
-        <li>
-          <span>{DiagramSubTitles.all}:</span>
-          <span>{total}</span>
-        </li>
-
-        {keys.map((key) => (
-          <li>
-            <span>{DiagramSubTitles[key]}:</span>
-            <span>{data[key]}</span>
+        {formattedData.map(({ id, value }, index) => (
+          <li
+            key={index}
+            className={currentSlice?.id === id ? styles.activeItem : ''}
+            onMouseOver={() => onHover(id)}
+            onMouseLeave={onUnHover}
+          >
+            <span>{DiagramSubTitles[id]}:</span>
+            <span>{value}</span>
           </li>
         ))}
       </ul>

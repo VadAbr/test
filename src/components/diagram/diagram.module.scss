@@ -5,7 +5,7 @@
   margin-inline: $space-small-base;
 
   .diagram{
-
+    margin-block-end: $space-medium;
   }
 
   .list {
@@ -27,6 +27,14 @@
           color: #974db7;
           text-decoration: underline;
         }
+      }
+    }
+
+
+    .activeItem {
+      span {
+        color: #974db7;
+        text-decoration: underline;
       }
     }
   }
