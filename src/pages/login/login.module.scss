@@ -20,6 +20,12 @@
     margin-block-end: $space-medium;
   }
 
+  .error {
+    color: #e73434;
+    text-align: center;
+    margin-block-end: $space-medium;
+  }
+
   & input {
     margin-block-end: $space-large;
     inline-size: 320px;

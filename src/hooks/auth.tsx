@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from 'react';
-import { getLocalItem, setLocalItem } from '../utils/local-storage';
+import { getLocalItem, setLocalItem } from '../utils';
 import { tokenLocalKey } from '../constants';
 
 type TokenType = string | null;

@@ -4,7 +4,7 @@ import {
   ApolloLink,
   HttpLink,
 } from '@apollo/client';
-import { getLocalItem } from '../utils/local-storage';
+import { getLocalItem } from '../utils';
 import { tokenLocalKey } from '../constants';
 
 const httpLink = new HttpLink({ uri: process.env.REACT_APP_BASE_URL });

@@ -6,6 +6,7 @@ import { useAuth } from '../../hooks';
 import { LogoutIcon } from '../../icons';
 import { queries } from '../../gql';
 import { DashboardType } from '../../types';
+import Loader from '../../components/loader';
 
 import styles from './dashboard.module.scss';
 
@@ -22,12 +23,14 @@ const renderDiagrams = (dashboard: DashboardType) => {
 
 const Dashboard = () => {
   const { setAuth } = useAuth();
-  const { data, client } = useQuery(queries.GET_DASHBOARD);
+  const { data, client, loading, error } = useQuery(queries.GET_DASHBOARD);
 
   const logout = () => {
     setAuth(null);
     client.resetStore();
   };
+
+  const isNotReady = loading || error;
 
   return (
     <div className={styles.container}>
@@ -38,6 +41,13 @@ const Dashboard = () => {
           <LogoutIcon />
         </button>
       </header>
+
+      {isNotReady && (
+        <div className={styles.notReadyContainer}>
+          {loading && <Loader />}
+          {error && <p className={styles.error}>{error.message}</p>}
+        </div>
+      )}
 
       <div className={styles.content}>{renderDiagrams(data?.dashboard)}</div>
     </div>

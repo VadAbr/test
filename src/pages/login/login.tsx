@@ -17,7 +17,7 @@ const Login = () => {
   const [formData, setFormData] = useState(initialState);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const [login, { loading }] = useMutation(mutations.LOGIN);
+  const [login, { loading, error }] = useMutation(mutations.LOGIN);
   const { setAuth } = useAuth();
 
   useEffect(() => {
@@ -54,10 +54,17 @@ const Login = () => {
           onChange={onChange}
           name={'username'}
           placeholder={'Логин'}
+          autoComplete={'username'}
         />
 
-        <Input onChange={onChange} name={'password'} placeholder={'Пароль'} />
+        <Input
+          onChange={onChange}
+          name={'password'}
+          placeholder={'Пароль'}
+          autoComplete={'password'}
+        />
 
+        {error && <p className={styles.error}>{error.message}</p>}
         <Button disabled={loading} type={'submit'}>
           Войти
         </Button>

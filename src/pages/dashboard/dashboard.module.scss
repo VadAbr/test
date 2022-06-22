@@ -22,6 +22,17 @@
     cursor: pointer;
   }
 
+  .notReadyContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .error {
+      color: #e73434;
+      text-align: center;
+    }
+  }
+
   .content {
     display: flex;
     justify-content: space-around;
