@@ -1,26 +1,38 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import { Input, Button } from '../../ui';
+import { mutations } from '../../gql';
+import { Paths } from '../../constants';
+import { useAuth } from '../../hooks';
 
 import styles from './login.module.scss';
 
 const initialState = {
-  login: '',
+  username: '',
   password: '',
 };
 
 const Login = () => {
   const [formData, setFormData] = useState(initialState);
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const [login, { loading }] = useMutation(mutations.LOGIN);
+  const { setAuth } = useAuth();
 
   useEffect(() => {
     inputRef.current && inputRef.current.focus();
   }, []);
 
-  //TODO: add request to gql
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log(formData);
+    const { username, password } = formData;
+
+    try {
+      const { data } = await login({ variables: { username, password } });
+      setAuth(data.login.token);
+      navigate(Paths.dashboard);
+    } catch (e) {}
   };
 
   const onChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,15 +50,17 @@ const Login = () => {
 
       <form onSubmit={onSubmit}>
         <Input
-          onChange={onChange}
-          name={'login'}
           ref={inputRef}
+          onChange={onChange}
+          name={'username'}
           placeholder={'Логин'}
         />
 
         <Input onChange={onChange} name={'password'} placeholder={'Пароль'} />
 
-        <Button type={'submit'}>Войти</Button>
+        <Button disabled={loading} type={'submit'}>
+          Войти
+        </Button>
       </form>
     </div>
   );

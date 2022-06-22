@@ -7,10 +7,19 @@
 
   .header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding-inline: $space-medium;
     padding-block: $space-base;
     margin-block-end: $space-medium;
+  }
+
+  .logoutButton {
+    background-color: transparent;
+    border: none;
+    inline-size: 30px;
+    block-size: 30px;
+    cursor: pointer;
   }
 
   .content {

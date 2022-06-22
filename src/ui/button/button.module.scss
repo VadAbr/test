@@ -17,12 +17,16 @@
 
   transition: all 0.3s;
 
-  &:hover {
+  &:hover:not([disabled]) {
     background-color: #fdc764;
   }
 
   &:focus, &:active {
     border-color: #dbdbdb;
     background-color: #fdc764;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }

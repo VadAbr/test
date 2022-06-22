@@ -1,10 +1,15 @@
-import { DiagramSliceColors } from '../constants';
+import { DiagramSliceColors, DiagramTitles } from '../constants';
 
 export type Statistic = {
   active: number;
   inactive: number;
   completed: number;
 };
+
+export type DashboardType = Record<
+  keyof typeof DiagramTitles,
+  Record<keyof Statistic, number>
+>;
 
 export type FormattedStatistic = {
   all: number;

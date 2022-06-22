@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Paths } from '../../constants';
+import { useAuth } from '../../hooks';
 
 type PrivateRouteProps = {
   redirectTo: Paths;
@@ -8,10 +9,9 @@ type PrivateRouteProps = {
 };
 
 const PrivateRoute: FC<PrivateRouteProps> = ({ element, redirectTo }) => {
-  //TODO: add logic
-  const isAuthorized = true;
+  const { isLoggedIn } = useAuth();
 
-  if (!isAuthorized) {
+  if (!isLoggedIn) {
     return <Navigate to={redirectTo} />;
   }
 

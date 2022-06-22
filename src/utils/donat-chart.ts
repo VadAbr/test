@@ -14,7 +14,6 @@ export const prepareDataForDonatChart = (
 
   const newData = keys.map((key) => {
     const percent = (data[key] * 100) / total;
-
     return {
       id: key,
       color: DiagramSliceColors[key],

@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloProvider, InMemoryCache, ApolloClient } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
+
 import App from './components/app';
+import { client } from './gql';
+import { AuthProvider } from './hooks';
 
 import './global.scss';
-
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_BASE_URL,
-  cache: new InMemoryCache(),
-});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -18,9 +16,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AuthProvider>
     </ApolloProvider>
   </React.StrictMode>,
 );

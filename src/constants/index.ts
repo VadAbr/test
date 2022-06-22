@@ -23,3 +23,5 @@ export enum DiagramSliceColors {
   inactive = '#fccf82',
   completed = '#cfcfd7',
 }
+
+export const tokenLocalKey = 'token';
