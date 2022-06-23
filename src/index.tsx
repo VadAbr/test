@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 
 import App from './components/app';
@@ -17,9 +17,9 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <AuthProvider>
-        <BrowserRouter>
+        <HashRouter basename={'/'}>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </AuthProvider>
     </ApolloProvider>
   </React.StrictMode>,
