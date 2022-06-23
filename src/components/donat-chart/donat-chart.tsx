@@ -9,9 +9,9 @@ import styles from './donat-chart.module.scss';
 export type DonatChartProps = {
   data: DonutSlice<FormattedStatistic>[];
   label: DiagramTitles;
-  radius: number;
+  radius?: number;
   viewBox?: number;
-  borderSize: number;
+  borderSize?: number;
   onHover?: (key: keyof FormattedStatistic) => void;
   onUnHover?: () => void;
   currentSlice?: DonutSlice<FormattedStatistic> | null;
@@ -21,8 +21,8 @@ const DonatChart: FC<DonatChartProps> = ({
   data,
   label,
   onHover,
-  borderSize,
-  radius,
+  borderSize = 5,
+  radius = 50,
   viewBox = 100,
   currentSlice,
   onUnHover,

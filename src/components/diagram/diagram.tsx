@@ -32,8 +32,6 @@ const Diagram: FC<DiagramProps> = ({ data, title }) => {
         <DonatChart
           data={formattedData}
           label={title}
-          borderSize={5}
-          radius={50}
           currentSlice={currentSlice}
           onHover={onHover}
           onUnHover={onUnHover}
@@ -41,9 +39,9 @@ const Diagram: FC<DiagramProps> = ({ data, title }) => {
       </div>
 
       <ul className={styles.list}>
-        {formattedData.map(({ id, value }, index) => (
+        {formattedData.map(({ id, value }) => (
           <li
-            key={index}
+            key={id}
             className={currentSlice?.id === id ? styles.activeItem : ''}
             onMouseOver={() => onHover(id)}
             onMouseLeave={onUnHover}

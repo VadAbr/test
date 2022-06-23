@@ -9,7 +9,7 @@ interface AuthContextProps {
   setAuth: (token: TokenType) => void;
 }
 
-function useProvideAuth(): AuthContextProps {
+const useProvideAuth = (): AuthContextProps => {
   const token = getLocalItem(tokenLocalKey);
   const [isLoggedIn, setIsLoggedIn] = useState(Boolean(token));
 
@@ -22,7 +22,7 @@ function useProvideAuth(): AuthContextProps {
     setAuth,
     isLoggedIn,
   };
-}
+};
 
 const authContext = createContext({} as AuthContextProps);
 
