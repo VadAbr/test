@@ -7,7 +7,11 @@ import {
 import { getLocalItem } from '../utils';
 import { tokenLocalKey } from '../constants';
 
-const httpLink = new HttpLink({ uri: process.env.REACT_APP_BASE_URL });
+const defaultLink = 'https://gravitel-graphql-backend.herokuapp.com/graphql';
+
+const httpLink = new HttpLink({
+  uri: process.env.REACT_APP_BASE_URL || defaultLink,
+});
 
 const authLink = new ApolloLink((operation, forward) => {
   const token = getLocalItem(tokenLocalKey);
