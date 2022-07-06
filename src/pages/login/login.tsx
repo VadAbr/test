@@ -60,6 +60,7 @@ const Login = () => {
         <Input
           onChange={onChange}
           name={'password'}
+          type={'password'}
           placeholder={'Пароль'}
           autoComplete={'password'}
         />
